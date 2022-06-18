@@ -1,0 +1,31 @@
+[user]
+	name = L2AsHdz
+	email = leonidas0197@gmail.com
+[color]
+	ui = auto
+[filesystem "Oracle Corporation|11.0.10|/dev/nvme0n1p8"]
+	timestampResolution = 7000 nanoseconds
+	minRacyThreshold = 4167 microseconds
+[filesystem "N/A|15.0.2|/dev/nvme0n1p8"]
+	timestampResolution = 8264 nanoseconds
+	minRacyThreshold = 6472 microseconds
+[filesystem "N/A|15.0.2|tmpfs"]
+	timestampResolution = 19379 nanoseconds
+	minRacyThreshold = 5030 microseconds
+[filesystem "Oracle Corporation|1.8.0_282|/dev/nvme0n1p8"]
+	timestampResolution = 1001 microseconds
+	minRacyThreshold = 3216 microseconds
+[alias]
+	logg = log --oneline --graph --decorate
+[core]
+	editor = nvim
+	pager = delta
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+    navigate = true  # use n and N to move between diff sections
+	side-by-side = true
+[merge]
+    conflictstyle = diff3
+[diff]
+    colorMoved = default	
