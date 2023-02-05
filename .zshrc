@@ -96,6 +96,7 @@ plugins=(
     docker-compose
     zsh-docker-aliases
     mysql-colorize
+    transfer
     k
     autojump
 )

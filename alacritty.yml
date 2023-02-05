@@ -18,7 +18,7 @@ window:
 
   # Remove buttons
   decorations: none
-  # Open in full screen 
+  # Open in full screen
   startup_mode: Windowed
   # Dimensions if not SimpleFullscreen
   dimensions:
@@ -69,7 +69,7 @@ selection:
 
 # Startup directory, unset or None for home directory
 working_directory: None
-  
+
 colors:
   primary:
     background: '0x232136'
@@ -111,3 +111,20 @@ colors:
     end:
      foreground: '#59546d'
      background: '#393552'
+key_bindings:
+  - { key: Return, mods: Control, chars: "\x1b[13;5u" }
+
+  - { key: H, mods: Control|Shift, chars: "\x1b[72;6u" }
+  - { key: J, mods: Control|Shift, chars: "\x1b[74;6u" }
+  - { key: K, mods: Control|Shift, chars: "\x1b[75;6u" }
+  - { key: L, mods: Control|Shift, chars: "\x1b[76;6u" }
+
+  - { key: H, mods: Control|Alt, chars: "\x1b[72;7u" }
+  - { key: J, mods: Control|Alt, chars: "\x1b[74;7u" }
+  - { key: K, mods: Control|Alt, chars: "\x1b[75;7u" }
+  - { key: L, mods: Control|Alt, chars: "\x1b[76;7u" }
+
+  - { key: H, mods: Control|Alt|Shift, chars: "\x1b[72;8u" }
+  - { key: J, mods: Control|Alt|Shift, chars: "\x1b[74;8u" }
+  - { key: K, mods: Control|Alt|Shift, chars: "\x1b[75;8u" }
+  - { key: L, mods: Control|Alt|Shift, chars: "\x1b[76;8u" }
