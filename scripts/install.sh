@@ -26,14 +26,13 @@ ln -sv ~/.dotfiles/.gitconfig ~
 
 #python3
 echo Instalando dependencias para ohmyzsh
-sudo pacman -S python3
+sudo pacman -S python3 zip
 
 #autojump
-yay -S autojump gitflow
+yay -S autojump gitflow-avh
 
 #fzf
 sudo pacman -S fzf
-ENHANCD_FILTER=fzf; export ENHANCD_FILTER
 
 #clonar ohwn-my-zsh
 echo Clonando repositorio ohmyzsh
@@ -55,22 +54,22 @@ source ~/.zshrc
 cd ~
 
 # Parallel downloads pacman
-sudo sed 's/#ParallelDownloads = 5/ParallelDownloads = 5/' /etc/pacman.conf
+sudo sed -i 's/#ParallelDownloads = 5/ParallelDownloads = 5/' /etc/pacman.conf
 
 #fnm
 echo Instalando fnm
 curl -fsSL https://fnm.vercel.app/install | bash
 src
-fnm install 16
-fnm use 16
+fnm install 18
+fnm use 18
 node --version
 
 #qtile configuration
-ln -sv ~/.dotfiles/qtile/ ~/.config/qtile
+ln -sv ~/.dotfiles/qtile/ ~/.config/qtile/
 
 #alacritty
 pacin alacritty
-ln -sv ~/.dotfiles/alacritty.yml ~/.config/alacritty
+ln -sv ~/.dotfiles/alacritty.yml ~/.config/alacritty/
 
 #tmux
 pacin tmux
@@ -90,44 +89,44 @@ ctlstart fstrim.timer
 
 #instalar varios paquetes de pacman
 #dev
-pacin jdk-openjdk tldr mysql-workbench guake jdk11-openjdk jdk8-openjdk maven postman
+pacin jdk-openjdk tldr mysql-workbench guake jdk17-openjdk jdk8-openjdk maven jq mtr
 # pacin lua
 
 #utils
-pacin neofetch uget aria2 speedtest-cli exa bottom nmap wireshark-cli
+pacin neofetch uget aria2 speedtest-cli eza bottom nmap wireshark-cli
+pacin pacman-contrib gnome-keyring libsecret mesa-utils net-tools lshw nvidia-settings tree traceroute alsa-utils
 
 #media
 pacin vlc flameshot telegram-desktop pulseaudio-equalizer-ladspa libreoffice discord libreoffice-fresh-es
 pacin hunspell hunspell-es_es hunspell-es_gt obs-studio
 #system
 
-pacin pacman-contrib gnome-keyring libsecret mesa-utils net-tools lshw nvidia-settings tree traceroute alsa-utils
-pacin partitionmanager
+pacin partitionmanager alsa-oss alsa-tools paprefs ffmpeg2theora vorbis-tools pulseaudio-equalizer-ladspa
 
 #compress
 pacin unrar zip unzip p7zip lzip arj sharutils lzop unace lrzip xz cabextract lha lz4 gzip bzip2
 
-#fuentes
-yain nerd-fonts-monoid nerd-fonts-inconsolata-go nerd-fonts-mononoki nerd-fonts-fira-code nerd-fonts-space-mono
-yain nerd-fonts-overpass nerd-fonts-go-mono otf-nerd-fonts-fira-mono nerd-fonts-inconsolata nerd-fonts-jetbrains-mono
-
 #instalar varios paquetes de yay
-yain visual-studio-code-bin brave-bin google-chrome jetbrains-toolbox jdownloader2 spotify knemo downgrade teamviewer
-yain zoom teams subnetcalc pgmodeler
+yain visual-studio-code-bin brave-bin jetbrains-toolbox jdownloader2 spotify knemo downgrade teamviewer
+yain zoom teams subnetcalc
 
 #spotify-tui
 yain spotify-tui
 
+#dotnet
+pacin dotnet-sdk-6.0 dotnet-sdk dotnet-runtime-6.0 dotnet-runtime aspnet-runtime aspnet-runtime-6.0
+
 # Install angular-cli
 npmg @angular/cli typescript
 npmg npm-check-updates yarn
+npmg npm@latest
 
 # qemu
 pacin virt-manager qemu libvirt edk2-ovmf dnsmasq iptables-nft
-sed 's/#unix_sock_group = "libvirt"/unix_sock_group = "libvirt"/' /etc/libvirt/libvirtd.conf
-sed 's/#unix_sock_rw_perms = "0770"/unix_sock_rw_perms = "0770"/' /etc/libvirt/libvirtd.conf
-sed 's/#\s*user = "libvirt-qemu"/user = "asael"/' /etc/libvirt/qemu.conf
-sed 's/#\s*group = "libvirt-qemu"/group = "asael"/' /etc/libvirt/qemu.conf
+sed -i 's/#unix_sock_group = "libvirt"/unix_sock_group = "libvirt"/' /etc/libvirt/libvirtd.conf
+sed -i 's/#unix_sock_rw_perms = "0770"/unix_sock_rw_perms = "0770"/' /etc/libvirt/libvirtd.conf
+sed -i's/#\s*user = "libvirt-qemu"/user = "asael"/' /etc/libvirt/qemu.conf
+sed -i 's/#\s*group = "libvirt-qemu"/group = "asael"/' /etc/libvirt/qemu.conf
 
 #mariadb
 pacin mariadb
@@ -142,14 +141,14 @@ sudo usermod -aG docker $USER
 #php
 pacin apache
 http_config='/etc/httpd/conf/httpd.conf'
-sudo sed 's/LoadModule unique_id_module modules\/mod_unique_id.so/# LoadModule unique_id_module modules\/mod_unique_id.so/' $http_config
+sudo sed -i 's/LoadModule unique_id_module modules\/mod_unique_id.so/# LoadModule unique_id_module modules\/mod_unique_id.so/' $http_config
 ctlstart httpd
 ctlstat httpd
 
 
 pacin php php-apache composer
-sudo sed 's/LoadModule mpm_event_module modules\/mod_mpm_event.so/# LoadModule mpm_event_module modules\/mod_mpm_event.so/' $http_config
-sudo sed 's/#LoadModule mpm_prefork_module modules\/mod_mpm_prefork.so/LoadModule mpm_prefork_module modules\/mod_mpm_prefork.so/' $http_config
+sudo sed -i 's/LoadModule mpm_event_module modules\/mod_mpm_event.so/# LoadModule mpm_event_module modules\/mod_mpm_event.so/' $http_config
+sudo sed -i 's/#LoadModule mpm_prefork_module modules\/mod_mpm_prefork.so/LoadModule mpm_prefork_module modules\/mod_mpm_prefork.so/' $http_config
 
 echo "
 LoadModule php_module modules/libphp.so

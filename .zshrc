@@ -89,6 +89,7 @@ plugins=(
     zsh-syntax-highlighting
     zsh-history-substring-search
     zsh-completions
+    you-should-use
     history
     npm
     git-flow
@@ -97,6 +98,7 @@ plugins=(
     zsh-docker-aliases
     mysql-colorize
     transfer
+    autoupdate
     k
     autojump
 )
@@ -132,10 +134,6 @@ source $ZSH/oh-my-zsh.sh
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# fnm
-export PATH=/home/asael/.fnm:$PATH
-eval "`fnm env`"
-
 # JAVA_HOME ANDROID_SDK_ROOT
 # export JAVA_HOME='/usr/lib/jvm/java-8-openjdk'
 # export ANDROID_SDK_ROOT='/opt/android-sdk'
@@ -144,3 +142,37 @@ eval "`fnm env`"
 # export PATH=$PATH:$ANDROID_SDK_ROOT/tools/bin/
 # export PATH=$PATH:$ANDROID_ROOT/emulator
 # export PATH=$PATH:$ANDROID_SDK_ROOT/tools/
+
+# fnm
+export PATH="/home/asael/.local/share/fnm:$PATH"
+eval "`fnm env`"
+
+# exa
+export FPATH="/home/asael/.dotfiles/.eza/completions/zsh:$FPATH"
+
+#dotnet
+# export PATH="$DOTNET_ROOT:$DOTNET_ROOT/tools:$PATH"
+# zsh parameter completion for the dotnet CLI
+
+_dotnet_zsh_complete()
+{
+  local completions=("$(dotnet complete "$words")")
+
+  # If the completion list is empty, just continue with filename selection
+  if [ -z "$completions" ]
+  then
+    _arguments '*::arguments: _normal'
+    return
+  fi
+
+  # This is not a variable assignment, don't remove spaces!
+  _values = "${(ps:\n:)completions}"
+}
+
+compdef _dotnet_zsh_complete dotnet
+
+# Load Angular CLI autocompletion.
+source <(ng completion script)
+
+# To customize prompt, run `p10k configure` or edit ~/.dotfiles/.p10k.zsh.
+[[ ! -f ~/.dotfiles/.p10k.zsh ]] || source ~/.dotfiles/.p10k.zsh

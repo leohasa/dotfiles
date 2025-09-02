@@ -105,7 +105,7 @@ systemctl enable cups
 nmtui
 
 #Drivers de vídeo
-pacman -S nvidia nvidia-utils
+pacman -S nvidia-lts nvidia-utils
 
 #Servidor grafico
 pacman -S xorg
@@ -120,4 +120,7 @@ systemctl enable sddm
 pacman -S plasma packagekit-qt5
 pacman -S plasma-desktop packagekit-qt5
 
-pacman -S ktouch gwenview kcolorchooser okular kamoso kdeconnect dolphin dolphin-plugins ark filelight kate kcalc kfind konsole
+#or
+pacman -S bluedevil breeze-gtk kde-gtk-config khotkeys kinfocenter kscreen ksshaskpass kwallet-pam plasma-browser-integration plasma-desktop plasma-nm plasma-pa plasma-systemmonitor powerdevil sddm-kcm
+
+pacman -S ktouch gwenview kcolorchooser okular kamoso kdeconnect dolphin dolphin-plugins ark filelight kate kcalc kfind konsole partitionmanager
