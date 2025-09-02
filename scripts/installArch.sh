@@ -24,14 +24,11 @@ swapon /dev/partition
 #montar root
 mount /dev/partition /mnt
 #montar efi
-mkdir /mnt/efi
-mount /dev/partition /mnt/efi
+mount --mkdir /dev/partition /mnt/efi
 #montar home
-mkdir /mnt/home
-mount /dev/partition /mnt/home
+mount --mkdir /dev/partition /mnt/home
 #montar otras particiones
-mkdir /mnt/W10
-mount /dev/partition /mnt/W10
+mount --mkdir /dev/partition /mnt/W10
 
 #Instalacion de paquetes base
 pacstrap /mnt base linux-lts linux-firmware nano neovim intel-ucode
@@ -90,7 +87,7 @@ passwd username
 EDITOR=nano visudo
 
 exit
-umount -a
+umount -R /mnt
 reboot
 
 # Instalando KDE
