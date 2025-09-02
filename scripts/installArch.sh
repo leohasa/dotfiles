@@ -92,10 +92,10 @@ reboot
 
 # Instalando KDE
 pacman -S network-manager-applet wireless_tools dialog
-pacman -S mtools dosfstools bluez bluez-utils pulseaudio-bluetooth cups
+pacman -S mtools dosfstools bluez bluez-utils cups
 
 # Audio Drivers
-sudo pacman -S pulseaudio pulseaudio-alsa alsa-utils
+sudo pacman -S pulseaudio pulseaudio-alsa alsa-utils pulseaudio-bluetooth
 
 # OR
 
