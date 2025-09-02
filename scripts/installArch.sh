@@ -62,7 +62,7 @@ nano /etc/hosts
 #Escribir lo siguiente
 127.0.0.1       localhost
 ::1             localhost
-127.0.1.1       namePC
+127.0.1.1       hostname.localdomain  hostname
 
 #Crear contraseña root
 passwd
@@ -71,7 +71,7 @@ passwd
 pacman -S grub efibootmgr os-prober ntfs-3g networkmanager openssh base-devel linux-lts-headers git
 
 #Configuracion de grub
-grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=GRUB
+grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=ArchLinux
 echo "GRUB_DISABLE_OS_PROBER=false" >> /etc/default/grub
 grub-mkconfig -o /boot/grub/grub.cfg
 
@@ -80,7 +80,7 @@ systemctl enable NetworkManager
 systemctl enable sshd
 
 #Crear usuario
-useradd -mG wheel,audio,video,storage username
+useradd -mG wheel,audio,video,storage -s /bin/bash username
 passwd username
 
 #Descomentar wheel ALL=(ALL) ALL
@@ -94,9 +94,12 @@ reboot
 pacman -S network-manager-applet wireless_tools dialog
 pacman -S mtools dosfstools bluez bluez-utils pulseaudio-bluetooth cups
 
+# Audio Drivers
+sudo pacman -S pulseaudio pulseaudio-alsa alsa-utils
+
 #Iniciar servicios
-systemctl enable bluetooth
-systemctl enable cups
+# systemctl enable bluetooth
+# systemctl enable cups
 
 #Conectar a wifi
 nmtui
