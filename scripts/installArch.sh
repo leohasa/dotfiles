@@ -97,6 +97,11 @@ pacman -S mtools dosfstools bluez bluez-utils pulseaudio-bluetooth cups
 # Audio Drivers
 sudo pacman -S pulseaudio pulseaudio-alsa alsa-utils
 
+# OR
+
+sudo pacman -S pipewire pipewire-pulse pipewire-alsa pipewire-jack wireplumber
+systemctl --user enable --now pipewire pipewire-pulse
+
 #Iniciar servicios
 # systemctl enable bluetooth
 # systemctl enable cups
