@@ -43,7 +43,7 @@ mount --mkdir /dev/partition /mnt/home
 mount --mkdir /dev/partition /mnt/W10
 
 #Instalacion de paquetes base
-pacstrap /mnt base linux-lts linux-firmware nano neovim intel-ucode
+pacstrap /mnt base linux-lts linux-firmware nano neovim intel-ucode btrfs-progs
 
 #Generacion de archivo para montar particiones automaticamente
 genfstab -U /mnt >> /mnt/etc/fstab
