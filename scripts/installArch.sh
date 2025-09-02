@@ -15,6 +15,18 @@ cfdisk /dev/loquesea
 
 #particiones root y home
 mkfs.ext4 /dev/particion
+
+# OR btrfs
+mount /dev/partición-btrfs /mnt
+btrfs subvolume create /mnt/@
+btrfs subvolume create /mnt/@home
+btrfs subvolume create /mnt/@snapshots
+
+umount /mnt
+mount -o subvol=@ /dev/partición-btrfs /mnt
+mount -o --mkdir subvol=@home /dev/partición-btrfs /mnt/home
+mount -o --mkdir subvol=@snapshots /dev/partición-btrfs /mnt/.snapshots
+
 #particion efi
 mkfs.fat -F 32 /dev/partition
 #particion swap
