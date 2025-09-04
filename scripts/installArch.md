@@ -204,6 +204,11 @@ pacman -S plasma plasma-desktop packagekit-qt5 kde-applications
 pacman -S dolphin konsole gwenview okular kate kdeconnect ark filelight partitionmanager
 ```
 
+##### Budgie
+```bash
+pacman -S budgie-desktop budgie-screensaver budgie-control-center budgie-session
+```
+
 ##### Cinnamon
 ```bash
 pacman -S cinnamon
