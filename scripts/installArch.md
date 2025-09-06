@@ -253,6 +253,7 @@ Editar /boot/refind_linux.conf para agregar initramfs
 ```
 
 #### TLP (gestión de energía en laptops)
+Instar e iniciar tlp
 ```bash
 pacman -S tlp tlp-rdw
 systemctl enable tlp
@@ -260,6 +261,16 @@ systemctl enable NetworkManager-dispatcher
 systemctl mask systemd-rfkill.service
 systemctl mask systemd-rfkill.socket
 sudo tlp start
+```
+
+Configuraciones para aumentar vida util de bateria.
+Editar archivo /etc/tlp.conf
+```
+START_CHARGE_THRESH_BAT0=75
+STOP_CHARGE_THRESH_BAT0=80
+
+START_CHARGE_THRESH_BAT1=75
+STOP_CHARGE_THRESH_BAT1=80
 ```
 
 #### TRIM para SSD
