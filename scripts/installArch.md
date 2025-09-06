@@ -45,6 +45,7 @@ e2label /dev/{nvmeXnXpX} "Arch Linux"
 
 #### Ejemplo BTRFS
 ```bash
+mkfs.btrfs /dev/{nvmeXnXpX}
 mount /dev/{nvmeXnXpX} /mnt
 btrfs subvolume create /mnt/@
 btrfs subvolume create /mnt/@home
