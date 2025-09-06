@@ -216,23 +216,6 @@ pacman -S cinnamon
 ```
 
 ### Configuración Post-Instalación
-#### rEFInd
-Instalar y configurar rEFInd
-```bash
-pacman -S refind
-refind-install
-```
-
-Editar /efi/EFI/refind/refind.conf para habilitar version kernel strings
-```
-extra_kernel_version_strings linux-lts,linux
-```
-
-Editar /boot/refind_linux.conf para agregar initramfs
-```
-... initrd=@\boot\intel-ucode.img initrd=@\boot\initramfs-%v.img ...
-```
-
 #### Yay (AUR Helper)
 ```bash
 cd /opt
@@ -249,7 +232,24 @@ pacman -S unrar zip unzip p7zip lzip arj sharutils lzop unace lrzip xz cabextrac
 
 #### Utilidades recomendadas
 ```bash
-pacman -S neofetch tree traceroute htop btop nmap pacman-contrib net-tools lshw jq mtr speedtest-cli bottom wireshark-cli 
+pacman -S neofetch tree traceroute htop btop nmap pacman-contrib net-tools lshw jq mtr speedtest-cli bottom wireshark-cli curl wget
+```
+
+#### rEFInd
+Instalar y configurar rEFInd
+```bash
+pacman -S refind
+refind-install
+```
+
+Editar /efi/EFI/refind/refind.conf para habilitar version kernel strings
+```
+extra_kernel_version_strings linux-lts,linux
+```
+
+Editar /boot/refind_linux.conf para agregar initramfs
+```
+... initrd=@\boot\intel-ucode.img initrd=@\boot\initramfs-%v.img ...
 ```
 
 #### TLP (gestión de energía en laptops)
