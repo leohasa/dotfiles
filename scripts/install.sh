@@ -2,6 +2,29 @@
 echo Resolviendo problema de la hora con dual boot
 sudo timedatectl set-local-rtc 1
 
+#fzf
+sudo pacman -S fzf eza zsh
+
+# or eza
+wget -c https://github.com/eza-community/eza/releases/latest/download/eza_x86_64-unknown-linux-gnu.tar.gz -O - | tar xz
+sudo chmod +x eza
+sudo chown root:root eza
+sudo mv eza /usr/local/bin/eza
+
+# or fzf
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
+
+#fnm
+curl -fsSL https://fnm.vercel.app/install | bash
+src
+fnm install 18
+fnm use 18
+node --version
+
+# zinit
+bash -c "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/zdharma-continuum/zinit/HEAD/scripts/install.sh)"
+
 #clonar dotfiles
 echo Clonando dotfiles
 git clone https://github.com/L2AsHdz/dotfiles.git ~/.dotfiles
@@ -9,32 +32,12 @@ git clone https://github.com/L2AsHdz/dotfiles.git ~/.dotfiles
 #git config
 ln -sv ~/.dotfiles/.gitconfig ~
 
-#clonar ohwn-my-zsh
-echo Clonando repositorio ohmyzsh
-git clone git@github.com:L2AsHdz/ohmyzsh.git ~/.dotfiles/.oh-my-zsh
-cd ~/.dotfiles/.oh-my-zsh
-git checkout ohwn-my-zsh
-
 #zsh
 sudo pacman -S zsh
 ln -sv ~/.dotfiles/.p10k.zsh ~
 ln -sv ~/.dotfiles/.zshrc ~
 ln -sv ~/.dotfiles/.zsh_history ~
 chsh -s $(which zsh)
-
-#zinit
-bash -c "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/zdharma-continuum/zinit/HEAD/scripts/install.sh)"
-
-#fzf
-sudo pacman -S fzf
-
-#fnm
-echo Instalando fnm
-curl -fsSL https://fnm.vercel.app/install | bash
-src
-fnm install 18
-fnm use 18
-node --version
 
 #qtile configuration
 ln -sv ~/.dotfiles/qtile/ ~/.config/qtile/
@@ -48,13 +51,16 @@ pacin tmux
 ln -sv ~/.dotfiles/.tmux.conf ~
 
 #instalar varios paquetes de pacman
-#dev
-pacin jdk-openjdk tldr mysql-workbench guake jdk17-openjdk jdk8-openjdk maven jq mtr
-# pacin lua
+pcin tldr guake jq mtr
+# JDK
+pacin jdk-openjdk jdk17-openjdk jdk8-openjdk maven
+
+# lua
+pacin lua
 
 #utils
-pacin neofetch uget aria2 speedtest-cli eza bottom nmap wireshark-cli
-pacin pacman-contrib gnome-keyring libsecret mesa-utils net-tools lshw nvidia-settings tree traceroute alsa-utils
+pacin fastfetch speedtest-cli bottom nmap wireshark-cli
+pacin pacman-contrib gnome-keyring libsecret mesa-utils net-tools lshw nvidia-settings tree traceroutealsa-utils
 
 #media
 pacin vlc flameshot telegram-desktop pulseaudio-equalizer-ladspa libreoffice discord libreoffice-fresh-es
@@ -92,7 +98,7 @@ ctlstart mysql
 sudo mysql_secure_installation
 
 #docker and docker-compose
-pacin docker docker-compose
+pacin docker docker-buildx docker-compose
 sudo usermod -aG docker $USER
 
 #php
