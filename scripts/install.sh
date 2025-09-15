@@ -2,37 +2,12 @@
 echo Resolviendo problema de la hora con dual boot
 sudo timedatectl set-local-rtc 1
 
-#install yay
-echo Instalando yay
-cd /opt
-sudo git clone https://aur.archlinux.org/yay.git
-sudo chown -R $USER:users ./yay
-cd yay
-makepkg -si
-
 #clonar dotfiles
 echo Clonando dotfiles
 git clone https://github.com/L2AsHdz/dotfiles.git ~/.dotfiles
 
 #git config
 ln -sv ~/.dotfiles/.gitconfig ~
-
-# TODO: Actualizar llave ssh
-# mkdir ~/.ssh
-# sudo chmod 755 ~/.ssh
-# ln -sv ~/.dotfiles/.ssh/id_ed25519.pub ~/.ssh
-# sudo chmod 600 ~/.ssh/id_ed25519.pub
-# ssh -T git@github.com
-
-#python3
-echo Instalando dependencias para ohmyzsh
-sudo pacman -S python3 zip
-
-#autojump
-yay -S autojump gitflow-avh
-
-#fzf
-sudo pacman -S fzf
 
 #clonar ohwn-my-zsh
 echo Clonando repositorio ohmyzsh
@@ -41,20 +16,17 @@ cd ~/.dotfiles/.oh-my-zsh
 git checkout ohwn-my-zsh
 
 #zsh
-echo Instalando ohmyzsh
 sudo pacman -S zsh
 ln -sv ~/.dotfiles/.p10k.zsh ~
 ln -sv ~/.dotfiles/.zshrc ~
 ln -sv ~/.dotfiles/.zsh_history ~
 chsh -s $(which zsh)
 
-sh ~/.dotfiles/scripts/installPluginsZsh.sh
-zsh
-source ~/.zshrc
-cd ~
+#zinit
+bash -c "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/zdharma-continuum/zinit/HEAD/scripts/install.sh)"
 
-# Parallel downloads pacman
-sudo sed -i 's/#ParallelDownloads = 5/ParallelDownloads = 5/' /etc/pacman.conf
+#fzf
+sudo pacman -S fzf
 
 #fnm
 echo Instalando fnm
@@ -75,18 +47,6 @@ ln -sv ~/.dotfiles/alacritty.yml ~/.config/alacritty/
 pacin tmux
 ln -sv ~/.dotfiles/.tmux.conf ~
 
-#tlp
-pacin tlp tlp-rdw
-ctlon tlp
-ctlon NetworkManager-dispatcher
-systemctl mask systemd-rfkill.service
-systemctl mask systemd-rfkill.socket
-sudo tlp start
-
-#TRIM for SSD
-ctlon fstrim.timer
-ctlstart fstrim.timer
-
 #instalar varios paquetes de pacman
 #dev
 pacin jdk-openjdk tldr mysql-workbench guake jdk17-openjdk jdk8-openjdk maven jq mtr
@@ -102,9 +62,6 @@ pacin hunspell hunspell-es_es hunspell-es_gt obs-studio
 #system
 
 pacin partitionmanager alsa-oss alsa-tools paprefs ffmpeg2theora vorbis-tools pulseaudio-equalizer-ladspa
-
-#compress
-pacin unrar zip unzip p7zip lzip arj sharutils lzop unace lrzip xz cabextract lha lz4 gzip bzip2
 
 #instalar varios paquetes de yay
 yain visual-studio-code-bin brave-bin jetbrains-toolbox jdownloader2 spotify knemo downgrade teamviewer
