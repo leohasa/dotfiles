@@ -3,7 +3,7 @@ echo Resolviendo problema de la hora con dual boot
 sudo timedatectl set-local-rtc 1
 
 #fzf
-sudo pacman -S fzf eza zsh
+sudo pacman -S fzf eza zsh git-delta zoxide
 
 # or eza
 wget -c https://github.com/eza-community/eza/releases/latest/download/eza_x86_64-unknown-linux-gnu.tar.gz -O - | tar xz
@@ -58,19 +58,12 @@ pacin jdk-openjdk jdk17-openjdk jdk8-openjdk maven
 # lua
 pacin lua
 
-#utils
-pacin fastfetch speedtest-cli bottom nmap wireshark-cli
-pacin pacman-contrib gnome-keyring libsecret mesa-utils net-tools lshw nvidia-settings tree traceroutealsa-utils
-
 #media
 pacin vlc flameshot telegram-desktop pulseaudio-equalizer-ladspa libreoffice discord libreoffice-fresh-es
 pacin hunspell hunspell-es_es hunspell-es_gt obs-studio
-#system
-
-pacin partitionmanager alsa-oss alsa-tools paprefs ffmpeg2theora vorbis-tools pulseaudio-equalizer-ladspa
 
 #instalar varios paquetes de yay
-yain visual-studio-code-bin brave-bin jetbrains-toolbox jdownloader2 spotify knemo downgrade teamviewer
+yain visual-studio-code-bin jetbrains-toolbox spotify downgrade teamviewer
 yain zoom teams subnetcalc
 
 #spotify-tui
@@ -150,7 +143,7 @@ npmg neovim
 gcl https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons
 ln -sv ~/.dotfiles/rc.conf ~/.config/ranger/
 
-gcl https://github.com/L2AsHdz/LeoVim ~/.config/nvim
+gcl https://github.com/leohasa/LeoVim ~/.config/nvim
 
 #Markdown Preview
 cd ~/.local/share/nvim/site/pack/packer/start/
